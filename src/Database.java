@@ -1,78 +1,40 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 
 
 
 public class Database {
 
+	public static final String DB_FILE = "SE300ALH.xlsx";
 
- 	public static String readFile(){
-	    BufferedReader reader = null;
-		try {
-			reader = new BufferedReader( new FileReader ("SE300ALH.xlsx"));
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    String         line = null;
-	    StringBuilder  stringBuilder = new StringBuilder();
-	    String         ls = System.getProperty("line.separator");
+	public static String readFile() throws IOException{
+		BufferedReader reader = null;
+		reader = new BufferedReader( new FileReader (DB_FILE));
+		String         line = null;
+		StringBuilder  stringBuilder = new StringBuilder();
+		String         ls = System.getProperty("line.separator");
 
-	    try {
-			while( ( line = reader.readLine() ) != null ) {
-			    stringBuilder.append( line );
-			    stringBuilder.append( ls );
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    
-	    try {
-			reader.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-	    return stringBuilder.toString();
+		while( ( line = reader.readLine() ) != null ) {
+			stringBuilder.append( line );
+			stringBuilder.append( ls );
+		}
+		reader.close();
+
+		return stringBuilder.toString();
 	}
-	
-	public static void writeToFile(String s){
-		File locFile = new File("SE300ALH.xlsx");
-		try {
-			locFile.createNewFile();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
+	public static void writeToFile(String s) throws IOException{
+		File locFile = new File(DB_FILE);
+		locFile.createNewFile();
 		BufferedWriter buffWriter = null;
-		try {
-			buffWriter = new BufferedWriter(new FileWriter(locFile, true));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		try {
-			buffWriter.write(s);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			buffWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		buffWriter = new BufferedWriter(new FileWriter(locFile, true));
+		buffWriter.write(s);
+		buffWriter.close();
 	}
 
 	/**m
@@ -80,7 +42,7 @@ public class Database {
 	 * @exception Throwable
 	 */
 	public void finalize()
-	  throws Throwable{
+			throws Throwable{
 
 	}
 
