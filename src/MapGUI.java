@@ -6,15 +6,21 @@
  * @created 09-Oct-2015 3:16:18 PM
  */
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class MapGUI extends LoginGUI {
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class MapGUI {
 
 	private double commonLocation;
 	private double Coordinates;
@@ -34,9 +40,18 @@ public class MapGUI extends LoginGUI {
     JPanel panel2;
     BufferedImage image;
     
-    public void show(String gpsUser,String gpsHome, int zoomPer) {
+    public static void main(String[] args) {
+		new MapGUI();
+	}
+    
+    /** This does stuff
+     * @param gpsUser I have no idea what this does
+     * @param gpsHome Also no idea...
+     * @param zoomPer wat?
+     */
+    public void show() {
            try {
-        	     image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoomPer+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
+        	     image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
         	  	 frame.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
          	     panel1=new JPanel();
         	  	 panel2=new JPanel();
@@ -82,7 +97,7 @@ public class MapGUI extends LoginGUI {
     }
    
 	public MapGUI(){
-    	 show(gpsUser,gpsHome,zoom);
+    	 show();
        	
     }
 	
@@ -121,14 +136,14 @@ public class MapGUI extends LoginGUI {
 		zoom=zoom+1;
 		frame.remove(panel1);
 		frame.remove(panel2);
-		show(gpsUser,gpsHome,zoom);
+		show();
 	}
 
     private void zoomOut(){
     	zoom=zoom-1;
     	frame.remove(panel1);
 		frame.remove(panel2);
-		show(gpsUser,gpsHome,zoom);		
+		show();		
 	}
 	
 	/**

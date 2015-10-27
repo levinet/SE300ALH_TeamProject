@@ -1,19 +1,10 @@
-import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.Scanner;
 
 public class LoginGUI {
 
@@ -21,6 +12,7 @@ public class LoginGUI {
 	public String username;
 	JFrame frame = new JFrame();
 	JPanel panel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +23,8 @@ public class LoginGUI {
 	/**
 	 * Create the frame.
 	 */
-	public void Login() {
+	public LoginGUI()
+	{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 450, 300);
 		JPanel contentPane = new JPanel();
@@ -60,11 +53,7 @@ public class LoginGUI {
 		});
 		frame.setVisible(true);
 	}
-	public LoginGUI()
-	{
-		Login();
-		MapGUI map=new MapGUI();
-	}
+	
 	public void createNewUser()
 	{
 		panel = new JPanel();
