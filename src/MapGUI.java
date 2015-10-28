@@ -21,11 +21,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * @author lopezy2
+ *
+ */
 public class MapGUI {
 
 	private double commonLocation;
 	private double Coordinates;
-	private double HomeLocation;
+	
+	protected double HomeLocation;
 	private char lostinfo;
 	int zoom=15;
 	String gpsUser="29.210815,-81.022833";
@@ -102,6 +107,9 @@ public class MapGUI {
        	
     }
 	
+	/**
+	 * 
+	 */
 	private void info(){
 		//Get gpsUser in double:
 		//Get gpsHome in double:

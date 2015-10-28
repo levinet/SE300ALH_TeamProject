@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginDataBase { 
-		   public Boolean Authenticate(String user, String pass) { 
+		   /**
+		 * @param user
+		 * @param pass
+		 * @return
+		 */
+		
+		public Boolean Authenticate(String user, String pass) { 
 			   
 		      List<String> userDetails = ReadFile();
 		      //String[] userDetailsString = (String[]) userDetails.toArray();
@@ -25,7 +31,12 @@ public class LoginDataBase {
 		      return valid;
 		   }
 		   
-		   public List<String> ReadFile(){
+		   /**
+		 * @return
+		 */
+		
+		
+		public List<String> ReadFile(){
 			   
 			// The name of the file to open.
 		        String fileName = "./userAccounts.txt";

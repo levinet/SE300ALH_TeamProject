@@ -11,7 +11,13 @@ import java.util.List;
  *
  */
 
+
 public class DatabaseManipulation {
+	
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	
 	public List<Database> readData() throws Exception{
 
@@ -50,6 +56,9 @@ public class DatabaseManipulation {
 	
 	
 	
+	/**
+	 * @throws Exception
+	 */
 	public void writeData() throws Exception{
 		
 		String DB_FILE =  "SE300ALH.csv_";
@@ -63,6 +72,9 @@ public class DatabaseManipulation {
 	}
 	
 	
+	/**
+	 * 
+	 */
 	private Database database;
 	
 	public Database getDatabase(){

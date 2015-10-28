@@ -6,6 +6,7 @@
 
 public class Database {
 	
+	
 	private String user;
 	private String password;
 	private String latitude;
@@ -19,6 +20,20 @@ public class Database {
 	private String email;
 	
 	
+	/**
+	 * crating a string
+	 * @param u :saving user information under u
+	 * @param pw :saving password information under pw
+	 * @param lat :saving latitude of the lost location under lat
+	 * @param longi :saving longitude of the lost location under longi
+	 * @param homeLat :saving home latitude  information under homeLat
+	 * @param homeLongi :saving home longitude information under homeLongi
+	 * @param t :saving times of lost information under t
+	 * @param d :saving  date information under d
+	 * @param em :saving emergency contact name information under em
+	 * @param ph :saving emergency contact phone number under ph
+	 * @param e :saving emergency contact email under e
+	 */
 	public Database(String u, String pw, String lat, String longi, String homeLat, String homeLongi, String t, String d, String em, String ph, String e){
 		user=u;
 		password=pw;
@@ -34,6 +49,9 @@ public class Database {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString() Class Object is the root of the class hierarchy. Every class has Object as a superclass. All objects, including arrays, implement the methods of this class.
+	 */
 	public String toString(){
 		return "User: "+user+"\nPassword: *******"+""+"\nCoordinates: "+latitude+","+longitude+
 				"\nHomeLocation: "+homeLatitude+","+homeLongitude+"\nTime: "+time+"\nDate: "+date+
@@ -45,6 +63,7 @@ public class Database {
 	 * 
 	 * @exception Throwable
 	 */
+	
 	public void finalize() throws Throwable {
 
 	}
