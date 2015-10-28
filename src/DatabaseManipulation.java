@@ -11,7 +11,7 @@ import java.util.List;
  *
  */
 
-public class DatabaseManipulation {
+public class DatabaseManipulation extends MapGUI{
 	
 	/**
 	 * the readData() method reads the given CSV file with the user's information
@@ -60,12 +60,16 @@ public class DatabaseManipulation {
 	 */
 	public void writeData() throws Exception{
 		
-		String DB_FILE =  "SE300ALH.csv_";
-		
-		BufferedWriter buffWrite = null;
-		
-		buffWrite = new BufferedWriter(new FileWriter(DB_FILE));
-		
+		String DB_FILE =  username+".csv";
+		int i;
+		BufferedReader buffread = new BufferedReader(new FileReader(username+".txt"));
+		BufferedWriter buffWrite = new BufferedWriter(new FileWriter(DB_FILE,true));
+		buffWrite.write(username);
+		while(buffread.readLine() != null)
+		{
+			buffWrite.write(buffread.readLine());
+		}
+		buffread.close();
 		buffWrite.close();
 	
 	}

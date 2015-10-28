@@ -9,7 +9,6 @@
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -46,10 +45,7 @@ public class MapGUI extends LoginGUI {
     JPanel panel2;
     BufferedImage image;
     
-    public static void main(String[] args) {
-		new MapGUI();
-	}
-    
+        
     /** This does stuff
      * @param gpsUser I have no idea what this does
      * @param gpsHome Also no idea...
@@ -133,13 +129,14 @@ public class MapGUI extends LoginGUI {
 		var d = R * c;*/
 		
 		
-//		JOptionPane.showMessageDialog(null, "User: BLANK \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
-		
+		JOptionPane.showMessageDialog(null, "User: BLANK \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
+/*
 		try {
 			JOptionPane.showMessageDialog(null, new DatabaseManipulation().readData().get(1).toString(), "Information", JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+*/
 		
 	}
  
