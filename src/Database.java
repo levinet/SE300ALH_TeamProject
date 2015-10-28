@@ -4,6 +4,22 @@
  *
  */
 
+
+
+/**
+ * class Database holds all the information for a single Database
+ * @param user: stores the name of the suer
+ * @param password: stores the password of the user
+ * @param latitude: stores the current latitude
+ * @param longitude: stores the current longitude
+ * @param homeLatitude: stores the user's home latitude
+ * @param homeLongitude: stores the user's home longitude
+ * @param time: stores the current time
+ * @param date: stores the current date
+ * @param emergencyContact: stores the user's emergency contact
+ * @param phone: stores the emergency contact's phone number
+ * @param email: stores the emergency contact's email address
+ */
 public class Database {
 	
 	
