@@ -1,53 +1,47 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
-
+/**
+ * @author bradlet7
+ *
+ */
 
 public class Database {
+	
+	private String user;
+	private String password;
+	private String latitude;
+	private String longitude;
+	private String homeLatitude;
+	private String homeLongitude;
+	private String time;
+	private String date;
+	private String emergencyContact;
+	private String phone;
+	private String email;
+	
+	
+	public Database(String u, String pw, String lat, String longi, String homeLat, String homeLongi, String t, String d, String em, String ph, String e){
+		user=u;
+		password=pw;
+		latitude=lat;
+		longitude=longi;
+		homeLatitude=homeLat;
+		homeLongitude=homeLongi;
+		time=t;
+		date=d;
+		emergencyContact=em;
+		phone=ph;
+		email=e;
 
-	public static final String DB_FILE = "SE300ALH.xlsx";
-
-	public static String readFile() throws IOException{
-		BufferedReader reader = null;
-		reader = new BufferedReader( new FileReader (DB_FILE));
-		String         line = null;
-		StringBuilder  stringBuilder = new StringBuilder();
-		String         ls = System.getProperty("line.separator");
-
-
-		while( ( line = reader.readLine() ) != null ) {
-			stringBuilder.append( line );
-			stringBuilder.append( ls );
-		}
-		reader.close();
-
-		return stringBuilder.toString();
 	}
 
-	public static void writeToFile(String s) throws IOException{
-		File locFile = new File(DB_FILE);
-		locFile.createNewFile();
-		BufferedWriter buffWriter = null;
-		buffWriter = new BufferedWriter(new FileWriter(locFile, true));
-		buffWriter.write(s);
-		buffWriter.close();
-	}
-
-	/**m
+	/**
+	 * m
 	 * 
 	 * @exception Throwable
 	 */
-	public void finalize()
-			throws Throwable{
+	public void finalize() throws Throwable {
 
 	}
 
-	public void storeData(){
-
-	}
 }
-//end Database
+// end Database
