@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseManipulation {
 	
-	public void readData() throws Exception{
+	public List<Database> readData() throws Exception{
 
 	String DB_FILE = "SE300ALH.csv_";
 
@@ -43,6 +43,8 @@ public class DatabaseManipulation {
 	}
 	
 	buffRead.close();
+	
+	return database;
 	
 	}
 	
