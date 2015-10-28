@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,32 +47,18 @@ public class DatabaseManipulation {
 	
 	}
 	
-	/*
-	public static String readFile() throws IOException {
-		BufferedReader reader = null;
-		reader = new BufferedReader(new FileReader(DB_FILE));
-		String line = null;
-		StringBuilder stringBuilder = new StringBuilder();
-		String ls = System.getProperty("line.separator");
-
-		while ((line = reader.readLine()) != null) {
-			stringBuilder.append(line);
-			stringBuilder.append(ls);
-		}
-		reader.close();
-
-		return stringBuilder.toString();
+	public void writeData() throws Exception{
+		
+		String DB_FILE =  "SE300ALH.csv_";
+		
+		BufferedWriter buffWrite = null;
+		
+		buffWrite = new BufferedWriter(new FileWriter(DB_FILE));
+		
+		buffWrite.close();
+	
 	}
-
-	public static void writeToFile(String s) throws IOException {
-		File locFile = new File(DB_FILE);
-		locFile.createNewFile();
-		BufferedWriter buffWriter = null;
-		buffWriter = new BufferedWriter(new FileWriter(locFile, true));
-		buffWriter.write(s);
-		buffWriter.close();
-	}
-	*/
+	
 
 	/**
 	 * 
