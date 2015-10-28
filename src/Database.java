@@ -35,7 +35,7 @@ public class Database {
 	}
 	
 	public String toString(){
-		return "User: "+user+"\nPassword: *****"+""+"\nCoordinates: "+latitude+","+longitude+
+		return "User: "+user+"\nPassword: *******"+""+"\nCoordinates: "+latitude+","+longitude+
 				"\nHomeLocation: "+homeLatitude+","+homeLongitude+"\nTime: "+time+"\nDate: "+date+
 				"\nEmergencyContact: "+emergencyContact+"\nPhone: "+phone+"\nEmail: "+email;
 	}
