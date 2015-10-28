@@ -21,7 +21,7 @@ public class Database {
 	
 	
 	/**
-	 * crating a string
+	 * create a Database type
 	 * @param u :saving user information under u
 	 * @param pw :saving password information under pw
 	 * @param lat :saving latitude of the lost location under lat

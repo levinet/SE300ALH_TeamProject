@@ -11,14 +11,13 @@ import java.util.List;
  *
  */
 
-
 public class DatabaseManipulation {
 	
 	/**
+	 * the readData() method reads the given CSV file with the user's information
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public List<Database> readData() throws Exception{
 
 	String DB_FILE = "SE300ALH.csv_";
