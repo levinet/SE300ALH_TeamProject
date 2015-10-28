@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  * @author lopezy2
  *
  */
-public class MapGUI {
+public class MapGUI extends LoginGUI {
 
 	private double commonLocation;
 	private double Coordinates;
@@ -41,7 +41,7 @@ public class MapGUI {
 	String lostL3="29.221924,-81.005716";
 	public InfoGUI m_InfoGUI;
 
-	JFrame frame = new JFrame();
+	JFrame frame1= new JFrame();
     JPanel panel1;
     JPanel panel2;
     BufferedImage image;
@@ -58,7 +58,7 @@ public class MapGUI {
     public void show() {
            try {
         	     image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
-        	  	 frame.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        	  	 frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
          	     panel1=new JPanel();
         	  	 panel2=new JPanel();
          	     JLabel label = new JLabel(new ImageIcon(image));
@@ -72,8 +72,8 @@ public class MapGUI {
                  panel2.add(info);
                  panel2.add(zIn);
                  panel2.add(zOut);                           
-                 frame.add(panel1);
-                 frame.add(panel2);
+                 frame1.add(panel1);
+                 frame1.add(panel2);
                  zIn.addActionListener((e)->{
                   	zoomIn();
                  });
@@ -87,11 +87,11 @@ public class MapGUI {
                 	 info();
                  });
                  
-                 frame.setTitle("Alzheimer Little Helper Application -> MAP");
-                 frame.pack();
-                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                 frame.setLocationRelativeTo(null);
-                 frame.setVisible(true);
+                 frame1.setTitle("Alzheimer Little Helper Application -> MAP");
+                 frame1.pack();
+                 frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                 frame1.setLocationRelativeTo(null);
+                 frame1.setVisible(true);
            	   	       
            }
            catch (MalformedURLException e){
@@ -150,15 +150,15 @@ public class MapGUI {
 
 	private void zoomIn(){
 		zoom=zoom+1;
-		frame.remove(panel1);
-		frame.remove(panel2);
+		frame1.remove(panel1);
+		frame1.remove(panel2);
 		show();
 	}
 
     private void zoomOut(){
     	zoom=zoom-1;
-    	frame.remove(panel1);
-		frame.remove(panel2);
+    	frame1.remove(panel1);
+		frame1.remove(panel2);
 		show();		
 	}
 	

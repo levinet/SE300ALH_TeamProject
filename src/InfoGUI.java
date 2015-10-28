@@ -27,6 +27,7 @@ public class InfoGUI extends MapGUI{
 	private String ECName;
 	private String ECNum;
 	private String ECMail;
+	
 
 	/**
 	 * @throws IOException throw exception for when the file is not found
