@@ -11,7 +11,6 @@ import java.util.List;
  *
  */
 
-
 public class DatabaseManipulation {
 	
 	public void readData() throws Exception{
@@ -35,17 +34,19 @@ public class DatabaseManipulation {
 		System.exit(404);
 	}
 	
-	List<Database> databases = new ArrayList<Database>(); 
+	List<Database> database = new ArrayList<Database>(); 
 	
 	while((currentLine = buffRead.readLine()) != null){
 		
 		data = currentLine.split(csvSplit);
-		databases.add(new Database(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10]));
+		database.add(new Database(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10]));
 	}
 	
 	buffRead.close();
 	
 	}
+	
+	
 	
 	public void writeData() throws Exception{
 		
@@ -59,7 +60,14 @@ public class DatabaseManipulation {
 	
 	}
 	
-
+	
+	private Database database;
+	
+	public Database getDatabase(){
+		return database;
+	}
+	
+	
 	/**
 	 * 
 	 * @exception Throwable
