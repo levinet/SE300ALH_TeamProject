@@ -1,4 +1,6 @@
 
+
+
 //d
 /**
  * @author lopezy2
@@ -33,7 +35,7 @@ public class MapGUI extends LoginGUI {
 	private char lostinfo;
 	int zoom=15;
 	String gpsUser="29.210815,-81.022833";
-	String gpsHome="29.19072,-81.048074";
+	String gpsHome=home;
 	String lostL1="29.184838,-81.070304";
 	String lostL2="29.179255,-81.056056";
 	

@@ -136,7 +136,7 @@ public class LoginGUI {
 						frame.remove(panel);
 						getInfo("Username does not exist. Enter again");
 					}
-					else
+					else if(num == 2)
 					{
 						count = 3;
 						frame.remove(panel);
@@ -339,10 +339,10 @@ public class LoginGUI {
 		int i;
 		FileReader read = new FileReader(username + ".txt");
 		BufferedReader buff = new BufferedReader(read);
-		for(i = 1; i == 4; i++)
-		{
-			waste = buff.readLine();
-		}
+		waste = buff.readLine();
+		waste = buff.readLine();
+		waste = buff.readLine();
+		waste = buff.readLine();
 		home = buff.readLine();
 		buff.close();
 	}
