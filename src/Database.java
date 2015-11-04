@@ -5,7 +5,6 @@
  */
 
 
-
 /**
  * class Database holds all the information for a single Database
  * @param user: stores the name of the suer
@@ -23,7 +22,7 @@
 public class Database {
 	
 	
-	private String user;
+	private String username;
 	private String password;
 	private String latitude;
 	private String longitude;
@@ -31,9 +30,9 @@ public class Database {
 	private String homeLongitude;
 	private String time;
 	private String date;
-	private String emergencyContact;
-	private String phone;
-	private String email;
+	private String ECname;
+	private String ECnum;
+	private String ECmail;
 	
 	
 	/**
@@ -51,7 +50,7 @@ public class Database {
 	 * @param e :saving emergency contact email under e
 	 */
 	public Database(String u, String pw, String lat, String longi, String homeLat, String homeLongi, String t, String d, String em, String ph, String e){
-		user=u;
+		username=u;
 		password=pw;
 		latitude=lat;
 		longitude=longi;
@@ -59,9 +58,9 @@ public class Database {
 		homeLongitude=homeLongi;
 		time=t;
 		date=d;
-		emergencyContact=em;
-		phone=ph;
-		email=e;
+		ECname=em;
+		ECnum=ph;
+		ECmail=e;
 
 	}
 	
@@ -69,9 +68,9 @@ public class Database {
 	 * @see java.lang.Object#toString() Class Object is the root of the class hierarchy. Every class has Object as a superclass. All objects, including arrays, implement the methods of this class.
 	 */
 	public String toString(){
-		return "User: "+user+"\nPassword: *******"+""+"\nCoordinates: "+latitude+","+longitude+
+		return "User: "+username+"\nPassword: *******"+""+"\nCoordinates: "+latitude+","+longitude+
 				"\nHomeLocation: "+homeLatitude+","+homeLongitude+"\nTime: "+time+"\nDate: "+date+
-				"\nEmergencyContact: "+emergencyContact+"\nPhone: "+phone+"\nEmail: "+email;
+				"\nEmergencyContact: "+ECname+"\nPhone: "+ECnum+"\nEmail: "+ECmail;
 	}
 
 	/**
