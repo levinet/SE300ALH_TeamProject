@@ -1,20 +1,18 @@
 import java.io.IOException;
-import java.rmi.AccessException;
 import java.util.Properties;
-import sun.rmi.transport.tcp.TCPTransport;
-import com.sun.media.jfxmedia.MediaException;
-
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * @author lopezy2, based on code from <a href="http://www.tutorialspoint.com/java/java_sending_email.htm">tutorialspoint.com</a>
  * @version 1.0
  * @created 09-Oct-2015 3:16:18 PM
  */
-public class EmergencyContact extends InfoGUI{
+public class EmergencyContact{ //extends InfoGUI{
 	
 public EmergencyContact() throws IOException {
 		super();
@@ -23,12 +21,14 @@ public EmergencyContact() throws IOException {
 
 public static void main (String [] args){
 	
+	System.out.println("Starting EmergencyContact thing");
+	
 	// Assuming you are sending email from localhost
     String host = "localhost";
 
 	
 	// Recipient's email ID needs to be mentioned.
-    String to = (ECMail+".txt");
+    String to = "seanhold3n+test@gmail.com";
 
     // Sender's email ID needs to be mentioned
     String from = "y3ssgl0@gmail.com"; // create email for the project

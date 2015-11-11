@@ -313,6 +313,7 @@ public class LoginGUI {
 		{
 			num++;
 			getContact("Please enter Emergency Contact email");
+			
 		}
 		else if (num == 3)
 		{
