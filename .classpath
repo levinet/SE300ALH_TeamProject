@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/lopezy2/Downloads/javamail-1.5.0-src.zip" sourcepath="C:/Users/lopezy2/Downloads/javamail-1.5.0-src.zip"/>
+	<classpathentry kind="lib" path="C:/Users/lopezy2/Downloads/javax.mail-1.3.3.01.jar.zip"/>
+	<classpathentry kind="lib" path="javax.mail.jar"/>
+	<classpathentry kind="lib" path="activation-1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

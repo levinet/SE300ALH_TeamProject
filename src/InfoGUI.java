@@ -26,7 +26,7 @@ public class InfoGUI extends MapGUI{
 
 	private String ECName;
 	private String ECNum;
-	private String ECMail;
+	protected static String ECMail;
 	
 
 	/**
