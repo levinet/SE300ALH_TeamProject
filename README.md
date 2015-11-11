@@ -9,4 +9,6 @@ Sprint 1
 3. Press the lost button on the Google Map when lost.
 
   
+## Dependencies
+This project uses Maven for dependency management.  If you don't have the Maven Eclipse plug-in, you may install it from the following Eclipse repo location: http://download.eclipse.org/technology/m2e/releases/
   
