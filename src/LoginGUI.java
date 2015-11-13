@@ -318,11 +318,11 @@ public class LoginGUI {
 		else if (num == 3)
 		{
 			num++;
-			getContact("Please enter home latitude and longitude");
+			getContact("Please enter home address");
 		}
 		else
 		{
-			home = info;
+			home = info.replaceAll(" ","+");
 			frame.setVisible(false);
 			MapGUI map = new MapGUI();
 		}
@@ -345,6 +345,7 @@ public class LoginGUI {
 		waste = buff.readLine();
 		waste = buff.readLine();
 		home = buff.readLine();
+		home = home.replaceAll(" ","+"); 
 		buff.close();
 	}
 }
