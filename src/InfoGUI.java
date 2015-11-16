@@ -96,7 +96,7 @@ public class InfoGUI extends MapGUI{
 	/**
 	 * Has the user enter updated emergency contact information
 	 */
-	public void  inputEmergecnyContact(){
+	public void  inputEmergencyContact(){
 
 	}
 

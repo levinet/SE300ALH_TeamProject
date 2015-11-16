@@ -12,6 +12,9 @@ import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -131,7 +134,10 @@ public class MapGUI extends LoginGUI {
 		var d = R * c;*/
 		
 		
-		JOptionPane.showMessageDialog(null, "User: BLANK \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
+		//JOptionPane.showMessageDialog(null, "User: "+username+" \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+		JOptionPane.showMessageDialog(null, "User: "+username+" \nLocation: "+gpsUser+"\nEmergency Contact: "+ECName+"\nEmail: "+ECMail+"\nSMS#: "+ECNum+"\n", "Information", JOptionPane.INFORMATION_MESSAGE);
+		
 /*
 		try {
 			JOptionPane.showMessageDialog(null, new DatabaseManipulation().readData().get(1).toString(), "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -177,4 +183,21 @@ public class MapGUI extends LoginGUI {
 	public double homeLine(){
 		return 0;
 	}
+	
+	String ECName;
+	String ECNum;
+	String ECMail;
+	
+	public void getInformation() throws IOException
+	{
+		String waste;
+		FileReader read = new FileReader(username + ".txt");
+		BufferedReader buff = new BufferedReader(read);
+		waste = buff.readLine();
+		ECName = buff.readLine();
+		ECNum = buff.readLine();
+		ECMail = buff.readLine();
+		buff.close();
+	}
+	
 }//end MapGUI
