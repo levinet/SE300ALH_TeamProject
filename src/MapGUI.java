@@ -11,19 +11,28 @@
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  * @author lopezy2
@@ -64,15 +73,19 @@ public class MapGUI extends LoginGUI {
         	  	 panel2=new JPanel();
          	     JLabel label = new JLabel(new ImageIcon(image));
          	     panel1.add(label);
-         	     panel2.setLayout(new GridLayout(4,1));
+         	     panel2.setLayout(new GridLayout(6,1));
                  Button zIn=new Button("Zoom: (+)");
                  Button zOut=new Button("Zoom: (-)");
                  Button info=new Button("Information");
                  Button lost=new Button("Press if LOST");
+                 Button change=new Button("Change Address");
+                 Button ECstuff=new Button("Change EC info");
                  panel2.add(lost);
                  panel2.add(info);
                  panel2.add(zIn);
-                 panel2.add(zOut);                           
+                 panel2.add(zOut); 
+                 panel2.add(change);
+                 panel2.add(ECstuff);
                  frame1.add(panel1);
                  frame1.add(panel2);
                  zIn.addActionListener((e)->{
@@ -86,6 +99,22 @@ public class MapGUI extends LoginGUI {
                  });
                  info.addActionListener((e)->{
                 	 info();
+                 });
+                 change.addActionListener((e)->{
+                	 try {
+						getNewAddress();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                 });
+                 change.addActionListener((e)->{
+                	 try {
+						getECstuff();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                  });
                  
                  frame1.setTitle("Alzheimer Little Helper Application -> MAP");
@@ -134,10 +163,7 @@ public class MapGUI extends LoginGUI {
 		var d = R * c;*/
 		
 		
-		//JOptionPane.showMessageDialog(null, "User: "+username+" \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
-
-		JOptionPane.showMessageDialog(null, "User: "+username+" \nLocation: "+gpsUser+"\nEmergency Contact: "+ECName+"\nEmail: "+ECMail+"\nSMS#: "+ECNum+"\n", "Information", JOptionPane.INFORMATION_MESSAGE);
-		
+		JOptionPane.showMessageDialog(null, "User: BLANK \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\n", "Information", JOptionPane.INFORMATION_MESSAGE);
 /*
 		try {
 			JOptionPane.showMessageDialog(null, new DatabaseManipulation().readData().get(1).toString(), "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -167,6 +193,37 @@ public class MapGUI extends LoginGUI {
 		show();		
 	}
 	
+    public void changeAddress(String stuff) throws IOException
+    {
+    	File f = new File(username + ".txt");
+    	File trash = new File("temp.txt");
+    	String waste;
+    	trash.createNewFile();
+		PrintWriter write = new PrintWriter("temp.txt");
+		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
+		
+		write.println(read.readLine());
+		write.println(read.readLine());
+		write.println(read.readLine());
+		write.println(read.readLine());
+		write.println(stuff);
+		waste = read.readLine();
+		
+		while(write.println(read.readLine() != null))
+		{
+		}
+		
+		write.close();
+		read.close();
+		gpsHome = stuff.replaceAll(" ","+");
+		f.delete();
+		trash.renameTo(f);
+		JOptionPane.showMessageDialog(null, "Address successfully changed");
+		frame1.remove(panel1);
+		frame1.remove(panel2);
+		show();
+		
+    }
 	/**
 	 * 
 	 * @exception Throwable
@@ -184,6 +241,11 @@ public class MapGUI extends LoginGUI {
 		return 0;
 	}
 	
+	public void getNewAddress() throws IOException
+	{
+		String info = JOptionPane.showInputDialog("Ener new Address");
+		changeAddress(info);
+	}
 	String ECName;
 	String ECNum;
 	String ECMail;
@@ -198,6 +260,38 @@ public class MapGUI extends LoginGUI {
 		ECNum = buff.readLine();
 		ECMail = buff.readLine();
 		buff.close();
+	}
+	
+	public void getECstuff() throws IOException
+	{
+		String name = JOptionPane.showInputDialog("Ener new Emergency Contact name");
+		String number = JOptionPane.showInputDialog("Ener new Emergency Contact number");
+		String email = JOptionPane.showInputDialog("Ener new Emergency Contact email");
+		
+		File f = new File(username + ".txt");
+    	File trash = new File("temp.txt");
+    	String waste;
+    	trash.createNewFile();
+		PrintWriter write = new PrintWriter("temp.txt");
+		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
+		
+		write.println(read.readLine());
+		write.println(name);
+		write.println(number);
+		write.println(email);
+		waste = read.readLine();
+		waste = read.readLine();
+		waste = read.readLine();
+		
+		while(write.println(read.readLine() != null))
+		{
+		}
+		
+		write.close();
+		read.close();
+		f.delete();
+		trash.renameTo(f);
+		JOptionPane.showMessageDialog(null, "Emergency Contact info successfully changed");
 	}
 	
 }//end MapGUI
