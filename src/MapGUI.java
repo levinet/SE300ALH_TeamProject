@@ -50,6 +50,9 @@ public class MapGUI extends LoginGUI {
 	String gpsHome=home;
 	String lostL1="29.184838,-81.070304";
 	String lostL2="29.179255,-81.056056";
+	String ECName;
+	String ECNum;
+	String ECMail;
 	
 	String lostL3="29.221924,-81.005716";
 	public InfoGUI m_InfoGUI;
@@ -246,9 +249,6 @@ public class MapGUI extends LoginGUI {
 		String info = JOptionPane.showInputDialog("Ener new Address");
 		changeAddress(info);
 	}
-	String ECName;
-	String ECNum;
-	String ECMail;
 	
 	public void getInformation() throws IOException
 	{
