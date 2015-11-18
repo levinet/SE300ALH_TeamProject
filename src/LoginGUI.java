@@ -1,3 +1,4 @@
+package src;
 
 import java.awt.Button;
 import java.awt.event.ActionEvent;
@@ -348,3 +349,4 @@ public class LoginGUI {
 		home = home.replaceAll(" ","+"); 
 		buff.close();
 	}
+}
