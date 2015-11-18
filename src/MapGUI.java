@@ -225,6 +225,11 @@ public class MapGUI extends LoginGUI {
 	 * 
 	 */
 	private void info(){
+		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
+		String name;
+		String number;
+		String email;
+		String waste;
 		//CALCULATING DISTANCE BETWEEN USER AND HOME:
 		String homeLatLon[] = gpsHome.split(",");
 		String userLatLon[] = gpsUser.split(",");
@@ -243,8 +248,13 @@ public class MapGUI extends LoginGUI {
 		double distanceM = (distanceKM*0.621371)/1000;
 		distanceM = distanceM - ((distanceM*100)%1)/100;
 		// new DatabaseManipulation().readData().get(1).toString()+
+		waste = read.readLine();
+		name = read.readLine();
+		number = read.readLine();
+		email = read.readLie();
+		read.close();
 		try {
-			JOptionPane.showMessageDialog(null,"User: BLANK \nLocation: "+gpsUser+"\nEmergency Contact: BLANK\nEmail: BLANK\nSMS#: BLANK\nDistance from Home: "+distanceM+" (m.)", "Information", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,"User: "+ username +"\nLocation: "+gpsUser+"\nEmergency Contact: "+name+"\nEmail: "+email+"\nSMS#: "+number+"\nDistance from Home: "+distanceM+" (m.)", "Information", JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
