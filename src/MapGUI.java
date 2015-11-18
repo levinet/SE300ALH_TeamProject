@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -121,7 +122,12 @@ public class MapGUI extends LoginGUI {
                 	 pressIfLost();
                  });
                  info.addActionListener((e)->{
-                	 info();
+                	 try {
+						info();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                  });
                  start.addActionListener((e)->{
                 	 start();
@@ -222,9 +228,10 @@ public class MapGUI extends LoginGUI {
     }
 	
 	/**
+	 * @throws IOException 
 	 * 
 	 */
-	private void info(){
+	private void info() throws IOException{
 		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
 		String name;
 		String number;
@@ -251,7 +258,7 @@ public class MapGUI extends LoginGUI {
 		waste = read.readLine();
 		name = read.readLine();
 		number = read.readLine();
-		email = read.readLie();
+		email = read.readLine();
 		read.close();
 		try {
 			JOptionPane.showMessageDialog(null,"User: "+ username +"\nLocation: "+gpsUser+"\nEmergency Contact: "+name+"\nEmail: "+email+"\nSMS#: "+number+"\nDistance from Home: "+distanceM+" (m.)", "Information", JOptionPane.INFORMATION_MESSAGE);
