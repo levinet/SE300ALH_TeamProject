@@ -1,6 +1,3 @@
-package src;
-
-
 
 //d
 /**
@@ -273,6 +270,13 @@ public class MapGUI extends LoginGUI {
 	private void pressIfLost(){
 		lostCount++;
 		JOptionPane.showMessageDialog(null, "Please remain at your location, An alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		try {
+			new EmergencyContact().send("ECMail");
+		}
+		 catch (Exception e) {
+			System.out.println("Email failed to send!");
+		 }
+		
 		frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(true);
