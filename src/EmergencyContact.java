@@ -25,6 +25,7 @@ import javax.mail.internet.MimeMultipart;
  * @created 09-Oct-2015 3:16:18 PM
  * 
  */
+
 public class EmergencyContact extends Authenticator { //extends InfoGUI{
 	private String User;
 	private String Pass;
@@ -53,7 +54,8 @@ public class EmergencyContact extends Authenticator { //extends InfoGUI{
 
 		User = "alhse300"; // username
 
-		Pass = "timtomyessitylerSE300"; // password
+//		Pass = "timtomyessitylerSE300"; // password
+		Pass = "qliyvujrqmehwwqt";
 
 		From = "alhse300@gmail.com"; // email sent from
 
@@ -304,35 +306,8 @@ public class EmergencyContact extends Authenticator { //extends InfoGUI{
 // more of the getters and setters …..
 
 
-// email validation \b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b.
-
-
-
 // send SMS message
+//use google voice to send txt 
 
-//try {
-//		String recipient = "+6825598090";
-//		String message = " Greetings! Have a nice day!";
-//		String username = "admin";
-//		String password = "pasword";
-//		String originator = "+6825598090";
-//		String requestUrl  = "http://127.0.0.1:9501/api?action=sendmessage&" +
-//		 "username=" + URLEncoder.encode(username, "UTF-8") +
-//		 "&password=" + URLEncoder.encode(password, "UTF-8") +
-//		 "&recipient=" + URLEncoder.encode(recipient, "UTF-8") +
-//		 "&messagetype=SMS:TEXT" +
-//		 "&messagedata=" + URLEncoder.encode(message, "UTF-8") +
-//		 "&originator=" + URLEncoder.encode(originator, "UTF-8") +
-//		 "&serviceprovider=GSMModem1" +
-//		 "&responseformat=html";
-//		URL url = new URL(requestUrl);
-//		HttpURLConnection uc = (HttpURLConnection)url.openConnection();
-//		System.out.println(uc.getResponseMessage());
-//		uc.disconnect();
-//		} catch(Exception ex) {
-//		System.out.println(ex.getMessage());
-//		}
-//	}
-//}
 
 //end EmergencyContact
