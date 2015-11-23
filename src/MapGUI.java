@@ -270,8 +270,19 @@ public class MapGUI extends LoginGUI {
 	private void pressIfLost(){
 		lostCount++;
 		JOptionPane.showMessageDialog(null, "Please remain at your location, An alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		
 		try {
-			new EmergencyContact().send("ECMail");
+			Email email = new Email("alhse300@gmail.com", "kfqggjpjqvtyesep");
+			email.setBody(username+" is lost.");
+			email.setSubject("Alzheimer Little Helper.");
+			email.setFrom("alhse300@gmail.com");
+			email.setTo(new String[]{"y3ssgl0@gmail.com"});
+			if(email.send()){
+				System.out.println("Email sent!");
+			}
+			else{
+				System.out.println("Email not sent.");
+			}
 		}
 		 catch (Exception e) {
 			System.out.println("Email failed to send!");
