@@ -1,7 +1,7 @@
 public class EmergencyContact {
 
 	public static void main(String[] args) throws Exception{
-		Email email = new Email("alhse300@gmail.com", "kfqggjpjqvtyesep");
+		EmailSMS email = new EmailSMS("alhse300@gmail.com", "kfqggjpjqvtyesep");
 		email.setBody("Your person is lost.");
 		email.setSubject("Alzheimer Little Helper.");
 		email.setFrom("alhse300@gmail.com");
