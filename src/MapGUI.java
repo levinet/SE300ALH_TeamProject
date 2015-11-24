@@ -1,3 +1,6 @@
+package src;
+
+
 
 //d
 /**
@@ -34,14 +37,16 @@ public class MapGUI extends LoginGUI {
 
 	int zoom=15;
 	public static int lostCount=0;
-	String gpsHome="29.210815,-81.022833";
-	String gpsUser="29.19072,-81.048074";
-	String newPath="&path=color:red|weight:5";
-	String lostL1="29.184838,-81.070304";
-	String lostL2="29.179255,-81.056056";
-	String lostL3="29.221924,-81.005716";
+	public String gpsHome=home;
+	public String gpsUser="29.21,-81.03";
+	String nPath="&path=color:red|weight:5";
+	String newPath;
+	public String lostL1;
+	public String lostL2;
+	public String lostL3;
+	int walter=0;
 	public InfoGUI m_InfoGUI;
-	
+	boolean startQ=true;
 	JFrame frame1= new JFrame();
     JPanel panel1;
     JPanel panel2;
@@ -56,20 +61,21 @@ public class MapGUI extends LoginGUI {
     
         
     /** This does stuff
+     * @param gpsUser 
      * @param gpsUser I have no idea what this does
      * @param gpsHome Also no idea...
      * @param zoomPer wat?
      */
-    public void show(boolean startQ) {
+    public void show(boolean startQ, String gpsUser) {
            try {
         	     if(startQ==true&&lostCount==0){
       	   		 	//starting image
-      	   		 	image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
+      	   		 	image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
       	   	 	 }else if(startQ==true&&lostCount>0){
-      	   	 		//display lost path URL
+      	   	 		//display lost path image
       	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+newPath+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
       	   	 	 }else{
-      	   	 		//display new location map update
+      	   	 		//display map
       	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
       	   	 	 }
         	     frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
@@ -80,7 +86,7 @@ public class MapGUI extends LoginGUI {
          	     JLabel label = new JLabel(new ImageIcon(image));
          	     panel1.add(label);
          	     panel2.setLayout(new GridLayout(3,1));
-        	     panel3.setLayout(new GridLayout(7,1));
+        	     panel3.setLayout(new GridLayout(6,1));
         	     panel4.setLayout(new GridLayout(2,1));
         	     Button start=new Button("Start");
                  Button stop=new Button("Stop");
@@ -88,14 +94,12 @@ public class MapGUI extends LoginGUI {
                  Button zOut=new Button("Zoom: (-)");
                  Button info=new Button("Information");
                  Button lost=new Button("Lost");
-                 Button move=new Button("Simulate Movement (5 mins)");
                  Button change=new Button("Change Address");
                  Button ECstuff=new Button("Change EC info");
                  panel2.add(start);
                  panel2.add(change);
                  panel2.add(ECstuff);
              	 panel3.add(stop);
-             	 panel3.add(move);
                  panel3.add(lost);
                  panel3.add(info);
                  panel3.add(zIn);
@@ -116,7 +120,12 @@ public class MapGUI extends LoginGUI {
                	  	zoomOut();
                	 });
                  lost.addActionListener((e)->{
-                	 pressIfLost();
+                	 try {
+						pressIfLost();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                  });
                  info.addActionListener((e)->{
                 	 try {
@@ -127,13 +136,15 @@ public class MapGUI extends LoginGUI {
 					}
                  });
                  start.addActionListener((e)->{
-                	 start();
+                	 try {
+						start();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                  });
                  stop.addActionListener((e)->{
                 	 stop();
-                 });
-                 move.addActionListener((e)->{
-                	 move();
                  });
                  change.addActionListener((e)->{
                 	 try {
@@ -143,7 +154,7 @@ public class MapGUI extends LoginGUI {
 						e1.printStackTrace();
 					}
                  });
-                 change.addActionListener((e)->{
+                 ECstuff.addActionListener((e)->{
                 	 try {
 						getECstuff();
 					} catch (Exception e1) {
@@ -167,61 +178,87 @@ public class MapGUI extends LoginGUI {
            }
     }
    
-    
-    private void move() {
-    	parseLocation();
-    	frame1.remove(panel1);
-		frame1.remove(panel4);
-		show(false);
-	}
-
     private void stop(){
     	frame1.remove(panel1);
 		frame1.remove(panel4);
-		show(true);		
+		show(true, gpsUser);		
 	}
 
-	private BufferedImage parseLocation(){
-    	//String gpsUser="29.21,-81.03";
+	private void parseLocation() throws IOException{
+    	 FileReader read9 = new FileReader(username + ".txt");
+		 BufferedReader buff9 = new BufferedReader(read9);
+		 int countgpsPath=0;
+		 int countcomparePath=0;
+		 while(buff9.readLine()!=null){
+			 countgpsPath++;
+		 }
+		 buff9.close();
+		 FileReader read10 = new FileReader(username + ".txt");
+		 BufferedReader buff10 = new BufferedReader(read10);
+		 String waster="";
+		 while(countcomparePath<=countgpsPath-61){
+			 waster=waster+buff10.readLine();
+			 countcomparePath++;
+		 }
+		 int arrayindex=0;
+		 String ArrayLocation[]=new String[60];
+		 while(countcomparePath<=countgpsPath-1){
+			 String gpspathinc[]= buff10.readLine().split("/");
+			 String gpspathcor[]=gpspathinc[1].split(",");
+			 String pathgps = gpspathcor[1]+","+gpspathcor[0];
+			 ArrayLocation[arrayindex]=pathgps;
+			 countcomparePath++;
+			 arrayindex++;
+		 }
+		 String path=null;
+		 buff10.close();
+		 for(int p=0;p<60;p++){
+			 path=path+"|"+ArrayLocation[p];
+		 }
+		 newPath= nPath + path;
+
+		//gpsUser=ArrayLocation[walter];
+		//walter++;
 		
-		//get new image for new GPSUser location
-		//String waste;
-		//FileReader read = new FileReader(username + ".txt");
-		//BufferedReader buff = new BufferedReader(read);
-		//waste = buff.readLine();
-		//waste = buff.readLine();      x7
-		//waste = buff.readLine();
-		//waste = buff.readLine();
-		//home = buff.readLine();
-		//home = home.replaceAll(" ","+"); 
-		//buff.close();
-		
-		
-    	//get new image for new GPSUser location
-		//add new path coordinate to path string
-		//for(0 to 329)
-		//	intnum+"/"
-		//newPath=newPath+"|"+pathCoordinate;
-		
-		try{
-			image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));    
-	    }catch (MalformedURLException e){
-			e.printStackTrace();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-		return image;
 	}
 
-	private void start() {
+	private void start() throws IOException {
+		 FileReader read3 = new FileReader(username + ".txt");
+		 BufferedReader buff3 = new BufferedReader(read3);
+		 String wasteq;
+		 int countgpsUser=7;
+		 int countcompare=0;
+		 wasteq=buff3.readLine();
+		 wasteq=buff3.readLine();
+		 wasteq=buff3.readLine();
+		 wasteq=buff3.readLine();
+		 wasteq=buff3.readLine();
+ 		 lostL1=buff3.readLine();
+		 lostL2=buff3.readLine();
+		 lostL3=buff3.readLine();
+		 while(buff3.readLine()!=null){
+			 countgpsUser++;
+		 }
+		 buff3.close();
+		 String wastew="";
+		 FileReader read7 = new FileReader(username + ".txt");
+		 BufferedReader buff7 = new BufferedReader(read7);
+		 while(countcompare!=countgpsUser){
+			 wastew=wastew+buff7.readLine();
+			 countcompare++;
+		 }
+		 String falseUser[]=buff7.readLine().split("/");
+         String user[]=falseUser[1].split(",");
+         gpsUser=user[1]+","+user[0];
+		 buff7.close();
 		 frame1.remove(panel1);
 		 frame1.remove(panel4);
-   	     show(false);
+   	     show(false, gpsUser);
 	}
 
     
-	public MapGUI(){
-    	 show(true);
+	public MapGUI() throws IOException{
+    	show(startQ,gpsUser);
     }
 	
 	/**
@@ -251,7 +288,6 @@ public class MapGUI extends LoginGUI {
 		double distanceKM = distance - distance%1;
 		double distanceM = (distanceKM*0.621371)/1000;
 		distanceM = distanceM - ((distanceM*100)%1)/100;
-		// new DatabaseManipulation().readData().get(1).toString()+
 		waste = read.readLine();
 		name = read.readLine();
 		number = read.readLine();
@@ -262,49 +298,33 @@ public class MapGUI extends LoginGUI {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+		//parseLocation();
 		frame1.remove(panel1);
 		frame1.remove(panel4);
-		show(false);
+		show(false, gpsUser);
 	}
  
-	private void pressIfLost(){
+	private void pressIfLost() throws IOException{
 		lostCount++;
-		JOptionPane.showMessageDialog(null, "Please remain at your location, An alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
-		
-		try {
-			EmailSMS email = new EmailSMS("alhse300@gmail.com", "kfqggjpjqvtyesep");
-			email.setBody(username+" is lost.");
-			email.setSubject("Alzheimer Little Helper.");
-			email.setFrom("alhse300@gmail.com");
-			email.setTo(new String[]{"y3ssgl0@gmail.com"});
-			if(email.send()){
-				System.out.println("Email sent!");
-			}
-			else{
-				System.out.println("Email not sent.");
-			}
-		}
-		 catch (Exception e) {
-			System.out.println("Email failed to send!");
-		 }
-		
+		parseLocation();
 		frame1.remove(panel1);
 		frame1.remove(panel4);
-		show(true);
+		show(true, gpsUser);
+		JOptionPane.showMessageDialog(null, "Please remain at your location, An alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 	}
 
 	private void zoomIn(){
 		zoom=zoom+1;
 		frame1.remove(panel1);
 		frame1.remove(panel4);
-		show(false);
+		show(false,gpsUser);
 	}
 
     private void zoomOut(){
     	zoom=zoom-1;
     	frame1.remove(panel1);
 		frame1.remove(panel4);
-		show(false);		
+		show(false,gpsUser);		
 	}
 	
     public void changeAddress(String stuff) throws IOException
@@ -338,12 +358,14 @@ public class MapGUI extends LoginGUI {
 		read.close();
 		read1.close();
 		gpsHome = stuff.replaceAll(" ","+");
-		f.delete();
-		trash.renameTo(f);
+		if(f.delete())
+		{
+			trash.renameTo(new File(username + ".txt"));
+		}
 		JOptionPane.showMessageDialog(null, "Address successfully changed");
 		frame1.remove(panel1);
-		frame1.remove(panel2);
-		show(false);
+		frame1.remove(panel4);
+		show(false,gpsUser);
 		
     }
 	/**
@@ -415,8 +437,11 @@ public class MapGUI extends LoginGUI {
 		
 		write.close();
 		read.close();
-		f.delete();
-		trash.renameTo(f);
+		read1.close();
+		if(f.delete())
+		{
+			trash.renameTo(new File(username + ".txt"));
+		}
 		JOptionPane.showMessageDialog(null, "Emergency Contact info successfully changed");
 	}
 	
