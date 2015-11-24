@@ -1,3 +1,6 @@
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -16,6 +19,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+import org.marre.SmsSender;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * 
@@ -323,6 +331,20 @@ public class EmailSMS extends javax.mail.Authenticator {
 
 	}
 
+
 	// more of the getters and setters …..
 
+// SMS begins
+	
+	// Send SMS with clickatell
+	SmsSender smsSender = SmsSender.getClickatellSender("tbrad237", "password", "3573575");
+	// The message that you want to send.
+	String msg = "A sample SMS.";
+	// International number to reciever without leading "+"
+	String reciever = "461234";
+	// Number of sender (not supported on all transports)
+	String sender = "461235";
+	smsSender.connect();
+	String msgids = smsSender.sendTextSms(msg, reciever, sender);
+	smsSender.disconnect();
 }
