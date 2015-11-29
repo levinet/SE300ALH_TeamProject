@@ -294,7 +294,6 @@ public class MapGUI extends LoginGUI {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		//parseLocation();
 		frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(false, gpsUser);
@@ -306,7 +305,24 @@ public class MapGUI extends LoginGUI {
 		frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(true, gpsUser);
-		JOptionPane.showMessageDialog(null, "Please remain at your location, An alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minutes.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		
+		try{
+			EmailSMS emailsend = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
+			emailsend.setBody(username+"is lost.");
+			emailsend.setSubject("Alzheimer Little Helper.");
+			emailsend.setFrom("alhse300@gmail.com");
+			emailsend.setTo(new String[]{"y3ssgl0@gmail.com"});
+			if(emailsend.send()){
+				System.out.println("Sent!");
+			}
+			else{
+				System.out.println("Message not sent");
+			}
+		}catch(Exception e){
+			System.out.println("Email failed to send.");
+		}
+		
 	}
 
 	private void zoomIn(){
