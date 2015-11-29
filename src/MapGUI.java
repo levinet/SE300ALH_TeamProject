@@ -1,4 +1,4 @@
-package src;
+
 
 /**
  * @author lopezy2
@@ -319,21 +319,21 @@ public class MapGUI extends LoginGUI {
 		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minutes.\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 		
 		//send email
-		try{
-			EmailSMS emailsend = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
-			emailsend.setBody(username+"is lost.");
-			emailsend.setSubject("Alzheimer Little Helper.");
-			emailsend.setFrom("alhse300@gmail.com");
-			emailsend.setTo(new String[]{email});
-			if(emailsend.send()){
-				System.out.println("Sent!");
-			}
-			else{
-				System.out.println("Message not sent");
-			}
-		}catch(Exception e){
-			System.out.println("Email failed to send.");
-		}
+//		try{
+//			EmailSMS emailsend = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
+//			emailsend.setBody(username+"is lost.");
+//			emailsend.setSubject("Alzheimer Little Helper.");
+//			emailsend.setFrom("alhse300@gmail.com");
+//			emailsend.setTo(new String[]{email});
+//			if(emailsend.send()){
+//				System.out.println("Sent!");
+//			}
+//			else{
+//				System.out.println("Message not sent");
+//			}
+//		}catch(Exception e){
+//			System.out.println("Email failed to send.");
+//		}
 		
 		//Send SMS message
 		String strAccountId = "CI00168287"; // Put your AccountId here
@@ -427,7 +427,7 @@ public class MapGUI extends LoginGUI {
 	
 	public void getNewAddress() throws IOException
 	{
-		String info = JOptionPane.showInputDialog("Ener new Address");
+		String info = JOptionPane.showInputDialog("Enter new Address");
 		changeAddress(info);
 	}
 	
@@ -445,9 +445,9 @@ public class MapGUI extends LoginGUI {
 	
 	public void getECstuff() throws IOException
 	{
-		String name = JOptionPane.showInputDialog("Ener new Emergency Contact name");
-		String number = JOptionPane.showInputDialog("Ener new Emergency Contact number");
-		String email = JOptionPane.showInputDialog("Ener new Emergency Contact email");
+		String name = JOptionPane.showInputDialog("Enter new Emergency Contact name");
+		String number = JOptionPane.showInputDialog("Enter new Emergency Contact number");
+		String email = JOptionPane.showInputDialog("Enter new Emergency Contact email");
 		
 		File f = new File(username + ".txt");
     	File trash = new File("temp.txt");
