@@ -42,7 +42,6 @@ public class MapGUI extends LoginGUI {
 	public String lostL2;
 	public String lostL3;
 	int walter=0;
-	public InfoGUI m_InfoGUI;
 	boolean startQ=true;
 	JFrame frame1= new JFrame();
     JPanel panel1;
@@ -305,14 +304,27 @@ public class MapGUI extends LoginGUI {
 		frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(true, gpsUser);
-		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minutes.", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 		
+		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
+		String name;
+		String number;
+		String email;
+		String waste;
+		waste = read.readLine();
+		name = read.readLine();
+		number = read.readLine();
+		email = read.readLine();
+		read.close();
+		
+		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minutes.\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		
+		//send email
 		try{
 			EmailSMS emailsend = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
 			emailsend.setBody(username+"is lost.");
 			emailsend.setSubject("Alzheimer Little Helper.");
 			emailsend.setFrom("alhse300@gmail.com");
-			emailsend.setTo(new String[]{"y3ssgl0@gmail.com"});
+			emailsend.setTo(new String[]{email});
 			if(emailsend.send()){
 				System.out.println("Sent!");
 			}
@@ -322,6 +334,22 @@ public class MapGUI extends LoginGUI {
 		}catch(Exception e){
 			System.out.println("Email failed to send.");
 		}
+		
+		//Send SMS message
+		String strAccountId = "CI00168287"; // Put your AccountId here
+		String strEmail = "alhse300@gmail.com"; // Put your Email address here
+												// (Used for authentication and replies)
+		String strPassword = "bI2gajK4"; // Put your Password here
+		String strMSISDN = number; // Put a recipient mobile number here
+		String strMessage = "Test SMS via Red Oxygen API"; // Put your SMS
+															// message text here
+		int nResult;
+		StringBuffer strResponse = new StringBuffer();
+
+		nResult = MessageSMS.SendSMS(strAccountId, strEmail, strPassword, strMSISDN, strMessage, strResponse);
+
+		System.out.println("SMS sent = " + nResult + "\n");
+		System.out.println("Response Text = " + strResponse + "\n");
 		
 	}
 
