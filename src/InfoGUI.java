@@ -104,8 +104,9 @@ public class InfoGUI extends MapGUI{
 
 	/**
 	 * Returns user to the map screen
+	 * @throws IOException 
 	 */
-	public void returnMap(){
+	public void returnMap() throws IOException{
 		MapGUI map = new MapGUI();
 	}
 

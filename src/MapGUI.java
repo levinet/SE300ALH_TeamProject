@@ -54,15 +54,14 @@ public class MapGUI extends LoginGUI {
 	String ECName;
 	String ECNum;
 	String ECMail;
-
-    
-        
+       
     /** This does stuff
      * @param gpsUser 
-     * @param gpsUser I have no idea what this does
-     * @param gpsHome Also no idea...
-     * @param zoomPer wat?
+     * @param gpsUser
+     * @param gpsHome 
+     * @param zoomPer
      */
+		
     public void show(boolean startQ, String gpsUser) {
            try {
         	     if(startQ==true&&lostCount==0){

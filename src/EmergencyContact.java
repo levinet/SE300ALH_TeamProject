@@ -2,7 +2,7 @@ package src;
 public class EmergencyContact {
 
 	public static void main(String[] args) throws Exception{
-		EmailSMS email = new EmailSMS("alhse300@gmail.com", "kfqggjpjqvtyesep");
+		EmailSMS email = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
 		email.setBody("Your person is lost.");
 		email.setSubject("Alzheimer Little Helper.");
 		email.setFrom("alhse300@gmail.com");
@@ -21,3 +21,4 @@ public class EmergencyContact {
 
 
 //end EmergencyContact
+//xntkmsknwbxqnbzt
