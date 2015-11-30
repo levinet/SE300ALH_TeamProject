@@ -1,11 +1,3 @@
-
-
-/**
- * @author lopezy2
- * @version 1.0
- * @created 09-Oct-2015 3:16:18 PM
- */
-
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -18,7 +10,6 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-
 import javax.imageio.ImageIO;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -34,40 +25,88 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
+ * The Class MapGUI.
+ *
  * @author lopezy2
+ */
+
+/**
+ * @author yessenia
  *
  */
 public class MapGUI extends LoginGUI {
 
+	/** The zoom. */
 	int zoom=15;
+	
+	/** The lost count. */
 	public static int lostCount=0;
+	
+	/** The gps home. */
 	public String gpsHome=home;
+	
+	/** The gps user. */
 	public String gpsUser;
+	
+	/** The n path. */
 	String nPath="&path=color:red|weight:5";
+	
+	/** The new path. */
 	String newPath;
+	
+	/** The lost l1. */
 	public String lostL1;
+	
+	/** The lost l2. */
 	public String lostL2;
+	
+	/** The lost l3. */
 	public String lostL3;
+	
+	/** The walter. */
 	int walter=0;
+	
+	/** The start q. */
 	boolean startQ=true;
+	
+	/** The frame1. */
 	JFrame frame1= new JFrame();
+    
+    /** The panel1. */
     JPanel panel1;
+    
+    /** The panel2. */
     JPanel panel2;
+    
+    /** The panel3. */
     JPanel panel3;
+    
+    /** The panel4. */
     JPanel panel4;
+    
+    /** The image. */
     BufferedImage image;
     
+	/** The EC name. */
 	String ECName;
+	
+	/** The EC num. */
 	String ECNum;
+	
+	/** The EC mail. */
 	String ECMail;
        
-    /** This does stuff
-     * @param gpsUser 
-     * @param gpsUser
-     * @param gpsHome 
-     * @param zoomPer
+    /**
+     *  This does stuff.
+     *
+     * @param startQ the start q
+     * @param gpsUser the gps user
      */
 		
+    /**
+     * @param startQ
+     * @param gpsUser
+     */
     public void show(boolean startQ, String gpsUser) {
            try {
         	     if(startQ==true&&lostCount==0){
@@ -180,12 +219,20 @@ public class MapGUI extends LoginGUI {
            }
     }
    
+    /**
+     * Stop.
+     */
     private void stop(){
     	frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(true, gpsUser);		
 	}
 
+	/**
+	 * Parses the location.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void parseLocation() throws IOException{
     	 FileReader read9 = new FileReader(username + ".txt");
 		 BufferedReader buff9 = new BufferedReader(read9);
@@ -224,6 +271,11 @@ public class MapGUI extends LoginGUI {
 		
 	}
 
+	/**
+	 * Start.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void start() throws IOException {
 		 FileReader read3 = new FileReader(username + ".txt");
 		 BufferedReader buff3 = new BufferedReader(read3);
@@ -259,13 +311,22 @@ public class MapGUI extends LoginGUI {
 	}
 
     
+	/**
+	 * Instantiates a new map gui.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public MapGUI() throws IOException{
     	show(startQ,gpsUser);
     }
 	
 	/**
-	 * @throws IOException 
-	 * 
+	 * Info.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	/**
+	 * @throws IOException
 	 */
 	private void info() throws IOException{
 		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
@@ -305,6 +366,11 @@ public class MapGUI extends LoginGUI {
 		show(false, gpsUser);
 	}
  
+	/**
+	 * Press if lost.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void pressIfLost() throws IOException{
 		lostCount++;
 		parseLocation();
@@ -326,7 +392,7 @@ public class MapGUI extends LoginGUI {
 		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minute(s).\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 		
 		//send email
-		final String username = "alhse300@gmail.com";
+		final String user = "alhse300@gmail.com";
         final String password = "gkqnlvvjemiilpna";
 
         Properties props = new Properties();
@@ -338,19 +404,35 @@ public class MapGUI extends LoginGUI {
         Session session = Session.getInstance(props,
           new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(user, password);
             }
           });
 
         try {
-
+        	String homeLatLon[] = gpsHome.split(",");
+    		String userLatLon[] = gpsUser.split(",");
+    		double hLat=Double.parseDouble(homeLatLon[0]);
+    		double hLon=Double.parseDouble(homeLatLon[1]);
+    		double uLat=Double.parseDouble(userLatLon[0]);
+    		double uLon=Double.parseDouble(userLatLon[1]);	
+    		double hLatRDiff = (hLat-uLat)*Math.PI/180;
+    		double hLonRDiff = (hLon-uLon)*Math.PI/180;
+    		double uLatR = uLat*Math.PI/180;
+    		double hLatR = hLat*Math.PI/180;
+    		double a = Math.pow(Math.sin(hLatRDiff/2.0),2)+Math.cos(uLatR)*Math.cos(hLatR)*Math.pow(Math.sin(hLonRDiff/2.0),2);
+    		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    		double distance = 6378000 * c;
+    		double distanceKM = distance - distance%1;
+    		double distanceM = (distanceKM*0.621371)/1000;
+    		distanceM = distanceM - ((distanceM*100)%1)/100;
+    		//initiate email
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("alhse300@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse("y3ssgl0@gmail.com"));
             message.setSubject("Email is working");
-            message.setText("Dear Team,"
-                + "\n\n The email finally works again!!!");
+            message.setText("Dear "+name+","
+                + "\n "+ username +" has been lost at Location: "+gpsUser+"\n They are "+distanceM+" (m.) from home:");
 
             Transport.send(message);
 
@@ -362,13 +444,32 @@ public class MapGUI extends LoginGUI {
         }
 		
 		//Send SMS message
-		String strAccountId = "CI00168287"; // Put your AccountId here
-		String strEmail = "alhse300@gmail.com"; // Put your Email address here
+        String homeLatLon[] = gpsHome.split(",");
+		String userLatLon[] = gpsUser.split(",");
+		double hLat=Double.parseDouble(homeLatLon[0]);
+		double hLon=Double.parseDouble(homeLatLon[1]);
+		double uLat=Double.parseDouble(userLatLon[0]);
+		double uLon=Double.parseDouble(userLatLon[1]);	
+		double hLatRDiff = (hLat-uLat)*Math.PI/180;
+		double hLonRDiff = (hLon-uLon)*Math.PI/180;
+		double uLatR = uLat*Math.PI/180;
+		double hLatR = hLat*Math.PI/180;
+		double a = Math.pow(Math.sin(hLatRDiff/2.0),2)+Math.cos(uLatR)*Math.cos(hLatR)*Math.pow(Math.sin(hLonRDiff/2.0),2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double distance = 6378000 * c;
+		double distanceKM = distance - distance%1;
+		double distanceM = (distanceKM*0.621371)/1000;
+		distanceM = distanceM - ((distanceM*100)%1)/100;
+		
+		String strAccountId = "CI00168303"; // Put your AccountId here
+		String strEmail = "y3ssgl0@gmail.com"; // Put your Email address here
 												// (Used for authentication and replies)
-		String strPassword = "bI2gajK4"; // Put your Password here
+		String strPassword = "rVhnm5B6"; // Put your Password here
 		String strMSISDN = number; // Put a recipient mobile number here
-		String strMessage = "Test SMS via Red Oxygen API"; // Put your SMS
-															// message text here
+		String strMessage = "Dear "+name+","
+                + "\n "+ username +" has been lost at Location: "+gpsUser+"\n They are "+distanceM+" (m.) from home:";
+ // Put your SMSmessage text here
+															
 		int nResult;
 		StringBuffer strResponse = new StringBuffer();
 
@@ -379,6 +480,9 @@ public class MapGUI extends LoginGUI {
 		
 	}
 
+	/**
+	 * Zoom in.
+	 */
 	private void zoomIn(){
 		zoom=zoom+1;
 		frame1.remove(panel1);
@@ -386,6 +490,9 @@ public class MapGUI extends LoginGUI {
 		show(false,gpsUser);
 	}
 
+    /**
+     * Zoom out.
+     */
     private void zoomOut(){
     	zoom=zoom-1;
     	frame1.remove(panel1);
@@ -393,6 +500,12 @@ public class MapGUI extends LoginGUI {
 		show(false,gpsUser);		
 	}
 	
+    /**
+     * Change address.
+     *
+     * @param stuff the stuff
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public void changeAddress(String stuff) throws IOException
     {
     	File f = new File(username + ".txt");
@@ -434,29 +547,56 @@ public class MapGUI extends LoginGUI {
 		show(false,gpsUser);
 		
     }
+	
 	/**
-	 * 
-	 * @exception Throwable
+	 * Finalize.
+	 *
+	 * @exception Throwable the throwable
+	 */
+	/* (non-Javadoc)
+	 * @see java.lang.Object#finalize()
 	 */
 	public void finalize()
 	  throws Throwable{
 
 	}
 
+	/**
+	 * Display lost.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean displayLost(){
 		return false;
 	}
 
+	/**
+	 * Home line.
+	 *
+	 * @return the double
+	 */
 	public double homeLine(){
 		return 0;
 	}
 	
+	/**
+	 * Gets the new address.
+	 *
+	 * @return the new address
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void getNewAddress() throws IOException
 	{
 		String info = JOptionPane.showInputDialog("Enter new Address");
 		changeAddress(info);
 	}
 	
+	/**
+	 * Gets the information.
+	 *
+	 * @return the information
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void getInformation() throws IOException
 	{
 		String waste;
@@ -469,6 +609,12 @@ public class MapGUI extends LoginGUI {
 		buff.close();
 	}
 	
+	/**
+	 * Gets the e cstuff.
+	 *
+	 * @return the e cstuff
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void getECstuff() throws IOException
 	{
 		String name = JOptionPane.showInputDialog("Enter new Emergency Contact name");

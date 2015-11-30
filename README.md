@@ -8,3 +8,4 @@ Sprint 1
 2. A file is created, where all of the individual useres are stored and can view their information.
 3. Press the lost button on the Google Map when lost.
 
+

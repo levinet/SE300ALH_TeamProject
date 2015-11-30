@@ -1,5 +1,3 @@
-
-
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +9,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -331,6 +328,9 @@ public class LoginGUI {
 	
 	
 	/**
+	 * Gets the home.
+	 *
+	 * @return the home
 	 * @throws IOException throw exception for when the file is not found
 	 * 
 	 * Gets the home location of the returning user so the map can display properly

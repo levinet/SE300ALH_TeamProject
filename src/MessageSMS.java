@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -7,11 +5,35 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MessageSMS.
+ *
+ * @author yessenia
+ */
 public class MessageSMS {
 
+	/**
+	 * Instantiates a new message sms.
+	 *
+	 * @param string the string
+	 */
 	public MessageSMS(String string) {
-		// TODO Auto-generated constructor stub
+		
 	}
+
+	/**
+	 * Send sms.
+	 *
+	 * @param strAccountId the str account id
+	 * @param strEmail the str email
+	 * @param strPassword the str password
+	 * @param strMSISDN the str msisdn
+	 * @param strMessage the str message
+	 * @param strResponse the str response
+	 * @return the int
+	 */
+	
 
 	public static int  SendSMS(String strAccountId,String strEmail,String strPassword,String strMSISDN,String strMessage,StringBuffer strResponse)
 	{
@@ -71,16 +93,25 @@ public class MessageSMS {
 		return nResult;
 	}
 
+	/** The str account id. */
 	public String strAccountId;
+	
+	/** The str email. */
 	public String strEmail;
+	
+	/** The str password. */
 	public String strPassword;
+	
+	/** The str msisdn. */
 	public String strMSISDN;
+	
+	/** The str message. */
 	public String strMessage;
 	
 }
 
 // Account Name: Software engineering practices
-// Account ID: CI00168287
-// Email Address: alhse300@gmail.com
-// Password: bI2gajK4
+// Account ID: CI00168303
+// Email Address: y3ssgl0@gmail.com
+// Password: rVhnm5B6
 
