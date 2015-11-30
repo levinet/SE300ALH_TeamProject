@@ -17,8 +17,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -315,24 +323,43 @@ public class MapGUI extends LoginGUI {
 		email = read.readLine();
 		read.close();
 		
-		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minutes.\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minute(s).\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 		
 		//send email
-//		try{
-//			EmailSMS emailsend = new EmailSMS("alhse300@gmail.com", "xntkmsknwbxqnbzt");
-//			emailsend.setBody(username+"is lost.");
-//			emailsend.setSubject("Alzheimer Little Helper.");
-//			emailsend.setFrom("alhse300@gmail.com");
-//			emailsend.setTo(new String[]{email});
-//			if(emailsend.send()){
-//				System.out.println("Sent!");
-//			}
-//			else{
-//				System.out.println("Message not sent");
-//			}
-//		}catch(Exception e){
-//			System.out.println("Email failed to send.");
-//		}
+		final String username = "alhse300@gmail.com";
+        final String password = "gkqnlvvjemiilpna";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+          });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("alhse300@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse("y3ssgl0@gmail.com"));
+            message.setSubject("Email is working");
+            message.setText("Dear Team,"
+                + "\n\n The email finally works again!!!");
+
+            Transport.send(message);
+
+           System.out.println("Done");
+
+        } 
+        catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
 		
 		//Send SMS message
 		String strAccountId = "CI00168287"; // Put your AccountId here
