@@ -1,3 +1,4 @@
+package src;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -84,8 +85,13 @@ public class MapGUI extends LoginGUI {
     /** The panel4. */
     JPanel panel4;
     
+    JPanel panel5;
+
     /** The image. */
     BufferedImage image;
+    
+    BufferedImage image2;
+    
     
 	/** The EC name. */
 	String ECName;
@@ -112,6 +118,7 @@ public class MapGUI extends LoginGUI {
         	     if(startQ==true&&lostCount==0){
       	   		 	//starting image
       	   		 	image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
+      	   		 	
       	   	 	 }else if(startQ==true&&lostCount>0){
       	   	 		//display lost path image
       	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+newPath+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
@@ -119,11 +126,14 @@ public class MapGUI extends LoginGUI {
       	   	 		//display map
       	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
       	   	 	 }
+        	     image2 = ImageIO.read(new File("Capture.PNG")) ;
         	     frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
          	     panel1=new JPanel();
         	  	 panel2=new JPanel();
         	  	 panel3=new JPanel();
        	  	 	 panel4=new JPanel();
+       	  	 	 panel5 =new JPanel();
+       	  	 	 JLabel label2 = new JLabel(new ImageIcon(image2));
          	     JLabel label = new JLabel(new ImageIcon(image));
          	     panel1.add(label);
          	     panel2.setLayout(new GridLayout(3,1));
@@ -135,7 +145,7 @@ public class MapGUI extends LoginGUI {
                  Button zOut=new Button("Zoom: (-)");
                  Button info=new Button("Information");
                  Button lost=new Button("Lost");
-                 Button change=new Button("Change Address");
+                 Button change=new Button("Change Home");
                  Button ECstuff=new Button("Change EC info");
                  panel2.add(start);
                  panel2.add(change);
@@ -145,6 +155,7 @@ public class MapGUI extends LoginGUI {
                  panel3.add(info);
                  panel3.add(zIn);
                  panel3.add(zOut);
+                 panel5.add(label2);
                  if(startQ==true){
                 	panel4.add(panel2);
                 	panel4.remove(panel3);
@@ -152,8 +163,9 @@ public class MapGUI extends LoginGUI {
                  	panel4.remove(panel2);
                  	panel4.add(panel3);
                  }
-                 frame1.add(panel1);
+                 frame1.add(panel5);
                  frame1.add(panel4);
+                 frame1.add(panel1);
                  zIn.addActionListener((e)->{
                   	zoomIn();
                  });
@@ -225,6 +237,7 @@ public class MapGUI extends LoginGUI {
     private void stop(){
     	frame1.remove(panel1);
 		frame1.remove(panel4);
+		frame1.remove(panel5);
 		show(true, gpsUser);		
 	}
 
@@ -307,6 +320,7 @@ public class MapGUI extends LoginGUI {
 		 buff7.close();
 		 frame1.remove(panel1);
 		 frame1.remove(panel4);
+		 frame1.remove(panel5);
    	     show(false, gpsUser);
 	}
 
@@ -363,6 +377,7 @@ public class MapGUI extends LoginGUI {
 		}
 		frame1.remove(panel1);
 		frame1.remove(panel4);
+		frame1.remove(panel5);
 		show(false, gpsUser);
 	}
  
@@ -376,6 +391,7 @@ public class MapGUI extends LoginGUI {
 		parseLocation();
 		frame1.remove(panel1);
 		frame1.remove(panel4);
+		frame1.remove(panel5);
 		show(true, gpsUser);
 		
 		BufferedReader read = new BufferedReader(new FileReader(username + ".txt"));
@@ -487,6 +503,7 @@ public class MapGUI extends LoginGUI {
 		zoom=zoom+1;
 		frame1.remove(panel1);
 		frame1.remove(panel4);
+		frame1.remove(panel5);
 		show(false,gpsUser);
 	}
 
@@ -497,6 +514,7 @@ public class MapGUI extends LoginGUI {
     	zoom=zoom-1;
     	frame1.remove(panel1);
 		frame1.remove(panel4);
+		 frame1.remove(panel5);
 		show(false,gpsUser);		
 	}
 	
