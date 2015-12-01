@@ -1,5 +1,6 @@
 package src;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -147,6 +149,7 @@ public class LoginGUI {
 				}
 			}
 		});
+		frame.setBackground(new Color(173,216,230));
 		frame.setVisible(true);
 	}
 	
@@ -203,6 +206,7 @@ public class LoginGUI {
 				}
 			}
 		});
+		frame.setBackground(new Color(173,216,230));
 		frame.setVisible(true);
 	}
 	
@@ -255,6 +259,7 @@ public class LoginGUI {
 	 */
 	public void getContact(String text)
 	{
+		frame.setBackground(new Color(173,216,230));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(600, 300, 450, 300);
 		panel = new JPanel();
@@ -286,6 +291,7 @@ public class LoginGUI {
 				}
 			}
 		});
+		
 		frame.setVisible(true);
 	}
 	
@@ -322,6 +328,7 @@ public class LoginGUI {
 		else
 		{
 			home = info.replaceAll(" ","+");
+			frame.setBackground(new Color(173,216,230));
 			frame.setVisible(false);
 			MapGUI map = new MapGUI();
 		}
