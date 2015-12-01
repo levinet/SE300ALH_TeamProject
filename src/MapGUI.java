@@ -119,14 +119,14 @@ public class MapGUI extends LoginGUI {
            try {
         	     if(startQ==true&&lostCount==0){
       	   		 	//starting image
-      	   		 	image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
+      	   		 	image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE&maptype=hybrid")); 
       	   		 	
       	   	 	 }else if(startQ==true&&lostCount>0){
       	   	 		//display lost path image
-      	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+newPath+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE")); 
+      	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+newPath+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE&maptype=hybrid")); 
       	   	 	 }else{
       	   	 		//display map
-      	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
+      	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE&maptype=hybrid"));
       	   	 	 }
         	     image2 = ImageIO.read(new File("Capture.PNG")) ;
         	     frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
