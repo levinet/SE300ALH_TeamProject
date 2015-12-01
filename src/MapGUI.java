@@ -1,5 +1,6 @@
 package src;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+
 import javax.imageio.ImageIO;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -127,7 +129,7 @@ public class MapGUI extends LoginGUI {
       	   	 		image = ImageIO.read(new URL("http://maps.google.com/maps/api/staticmap?center="+gpsUser+"&path=color:0x0000ff|weight:5|"+gpsUser+"|"+gpsHome+"&zoom="+zoom+"&markers=size:mid%7Ccolor:blue%7Clabel:L%7C"+lostL1+"|"+lostL2+"|"+lostL3+"&markers=size:mid%7Ccolor:green%7Clabel:U%7C"+gpsUser+"&markers=size:mid%7Ccolor:red%7Clabel:H%7C"+gpsHome+"&size=800x600&sensor=TRUE_OR_FALSE"));
       	   	 	 }
         	     image2 = ImageIO.read(new File("Capture.PNG")) ;
-        	     frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        	     frame1.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
          	     panel1=new JPanel();
         	  	 panel2=new JPanel();
         	  	 panel3=new JPanel();
@@ -215,7 +217,9 @@ public class MapGUI extends LoginGUI {
 						e1.printStackTrace();
 					}
                  });
-                 
+                 panel4.setBackground(new Color(173,216,230));
+                 panel3.setBackground(new Color(173,216,230));
+                 frame1.getContentPane().setBackground(new Color(173,216,230));
                  frame1.setTitle("Alzheimer Little Helper Application -> MAP");
                  frame1.pack();
                  frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -465,17 +469,9 @@ public class MapGUI extends LoginGUI {
 		double hLat=Double.parseDouble(homeLatLon[0]);
 		double hLon=Double.parseDouble(homeLatLon[1]);
 		double uLat=Double.parseDouble(userLatLon[0]);
-		double uLon=Double.parseDouble(userLatLon[1]);	
-		double hLatRDiff = (hLat-uLat)*Math.PI/180;
-		double hLonRDiff = (hLon-uLon)*Math.PI/180;
-		double uLatR = uLat*Math.PI/180;
-		double hLatR = hLat*Math.PI/180;
-		double a = Math.pow(Math.sin(hLatRDiff/2.0),2)+Math.cos(uLatR)*Math.cos(hLatR)*Math.pow(Math.sin(hLonRDiff/2.0),2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		double distance = 6378000 * c;
-		double distanceKM = distance - distance%1;
-		double distanceM = (distanceKM*0.621371)/1000;
-		distanceM = distanceM - ((distanceM*100)%1)/100;
+		double uLon=Double.parseDouble(userLatLon[1]);
+		double distanceM = findDistance(hLat, hLon,uLat,uLon);
+		
 		
 		String strAccountId = "CI00168303"; // Put your AccountId here
 		String strEmail = "y3ssgl0@gmail.com"; // Put your Email address here
@@ -559,7 +555,8 @@ public class MapGUI extends LoginGUI {
 		{
 			trash.renameTo(new File(username + ".txt"));
 		}
-		JOptionPane.showMessageDialog(null, "Address successfully changed");
+		JOptionPane.showMessageDialog(null, "Address successfully changed.");
+		frame1.remove(panel5);
 		frame1.remove(panel1);
 		frame1.remove(panel4);
 		show(false,gpsUser);
@@ -673,6 +670,20 @@ public class MapGUI extends LoginGUI {
 			trash.renameTo(new File(username + ".txt"));
 		}
 		JOptionPane.showMessageDialog(null, "Emergency Contact info successfully changed");
+	}
+	public double findDistance(double hLat,double hLon,double uLat,double uLon)
+	{
+		double hLatRDiff = (hLat-uLat)*Math.PI/180;
+		double hLonRDiff = (hLon-uLon)*Math.PI/180;
+		double uLatR = uLat*Math.PI/180;
+		double hLatR = hLat*Math.PI/180;
+		double a = Math.pow(Math.sin(hLatRDiff/2.0),2)+Math.cos(uLatR)*Math.cos(hLatR)*Math.pow(Math.sin(hLonRDiff/2.0),2);
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double distance = 6378000 * c;
+		double distanceKM = distance - distance%1;
+		double distanceM = (distanceKM*0.621371)/1000;
+		distanceM = distanceM - ((distanceM*100)%1)/100;
+		return distanceM;
 	}
 	
 }//end MapGUI

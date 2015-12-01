@@ -1,3 +1,5 @@
+package Test;
+
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -8,6 +10,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import src.LoginGUI;
+import src.MapGUI;
 
 
 public class ALHtester {
@@ -52,24 +57,21 @@ public class ALHtester {
 		
 		assertEquals(1,mer,0);
 	}
-	
-	public void testTyler() throws Exception{
+	//@Test
+	//public void testTyler() throws Exception{
 		
 		
 		
+	//}
+	@Test
+	public void testTom() throws Exception{
+		MapGUI mappy = new MapGUI();
+		assertEquals(0.81, mappy.findDistance(29.183460000000004,-81.04246,29.192400000000003,-81.05099),.05);
 	}
+	//@Test
+	//public void testYessenia() throws Exception {
 	
-	public void testYessenia() throws Exception {
-		int mer;
-		//run the MapGUI and wait 20 seconds
-		MapGUI map = new MapGUI();
-		Thread.sleep(20000);
-		// Check to see if email was sent when lost button is pressed
-		
-		
-		
-		
-	}
+	//}
 
 
 }
