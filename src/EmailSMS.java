@@ -8,7 +8,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EmailSMS.
  *
@@ -19,7 +18,8 @@ import javax.mail.internet.MimeMessage;
 
 	/**
 	 * The main method.
-	 *
+	 * This method obtains the password and email asociated with the gmail account.
+	 *the email is also composed 
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
@@ -46,9 +46,8 @@ import javax.mail.internet.MimeMessage;
             message.setFrom(new InternetAddress("alhse300@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse("y3ssgl0@gmail.com"));
-            message.setSubject("Email is working");
-            message.setText("Dear Team,"
-                + "\n\n The email finally works again!!!");
+            message.setSubject("");
+            message.setText("");
 
             Transport.send(message);
 

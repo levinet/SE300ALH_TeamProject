@@ -38,75 +38,31 @@ import javax.swing.JPanel;
  *
  */
 public class MapGUI extends LoginGUI {
-
-	/** The zoom. */
-	int zoom=15;
 	
-	/** The lost count. */
-	public static int lostCount=0;
-	
-	/** The gps home. */
-	public String gpsHome=home;
-	
-	/** The gps user. */
-	public String gpsUser;
-	
-	/** The n path. */
-	String nPath="&path=color:red|weight:5";
-	
-	/** The new path. */
-	String newPath;
-	
-	/** The lost l1. */
-	public String lostL1;
-	
-	/** The lost l2. */
-	public String lostL2;
-	
-	/** The lost l3. */
-	public String lostL3;
-	
-	/** The walter. */
-	int walter=0;
-	
-	/** The start q. */
-	boolean startQ=true;
-	
-	/** The frame1. */
+	int zoom=15;	
+	public static int lostCount=0;	
+	public String gpsHome=home;	
+	public String gpsUser;	
+	String nPath="&path=color:red|weight:5";	
+	String newPath;	
+	public String lostL1;	
+	public String lostL2;	
+	public String lostL3;	
+	int walter=0;	
+	boolean startQ=true;	
 	JFrame frame1= new JFrame();
-    
-    /** The panel1. */
-    JPanel panel1;
-    
-    /** The panel2. */
-    JPanel panel2;
-    
-    /** The panel3. */
-    JPanel panel3;
-    
-    /** The panel4. */
-    JPanel panel4;
-    
-    JPanel panel5;
-
-    /** The image. */
-    BufferedImage image;
-    
+    JPanel panel1;   
+    JPanel panel2;    
+    JPanel panel3;  
+    JPanel panel4;    
+    JPanel panel5;  
+    BufferedImage image;   
     BufferedImage image2;
-    
-    
-	/** The EC name. */
 	String ECName;
-	
-	/** The EC num. */
 	String ECNum;
-	
-	/** The EC mail. */
 	String ECMail;
        
     /**
-     *  This does stuff.
-     *
      * @param startQ the start q
      * @param gpsUser the gps user
      */
@@ -450,7 +406,7 @@ public class MapGUI extends LoginGUI {
             message.setFrom(new InternetAddress("alhse300@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse("y3ssgl0@gmail.com"));
-            message.setSubject("Email is working");
+            message.setSubject("ALH ALERT!!!!");
             message.setText("Dear "+name+","
                 + "\n "+ username +" has been lost at Location: "+gpsUser+"\n They are "+distanceM+" (m.) from home:");
 

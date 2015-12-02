@@ -57,21 +57,26 @@ public class ALHtester {
 		
 		assertEquals(1,mer,0);
 	}
-	//@Test
-	//public void testTyler() throws Exception{
-		
-		
-		
-	//}
+//	@Test
+//	public void testTyler() throws Exception{
+//		MapGUI phone = new MapGUI();
+//		assertEquals(6825598090, phone.);
+//		
+//		
+//		
+//	}
 	@Test
 	public void testTom() throws Exception{
 		MapGUI mappy = new MapGUI();
 		assertEquals(0.81, mappy.findDistance(29.183460000000004,-81.04246,29.192400000000003,-81.05099),.05);
-	}
-	//@Test
-	//public void testYessenia() throws Exception {
-	
-	//}
+//	}
+//	@Test
+//	public void testYessenia() throws Exception {
+//		MapGUI emailtest = new MapGUI();
+//		assertEquals("y3ssgl0@gmail.com",emailtest.);
+//	
+//	}
 
 
+}
 }
