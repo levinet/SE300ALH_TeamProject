@@ -65,11 +65,13 @@ public class ALHtester {
 //		
 //		
 //	}
+	
 	@Test
 	public void testTom() throws Exception{
 		MapGUI mappy = new MapGUI();
 		assertEquals(0.81, mappy.findDistance(29.183460000000004,-81.04246,29.192400000000003,-81.05099),.05);
-//	}
+	}
+	
 //	@Test
 //	public void testYessenia() throws Exception {
 //		MapGUI emailtest = new MapGUI();
@@ -78,5 +80,4 @@ public class ALHtester {
 //	}
 
 
-}
 }

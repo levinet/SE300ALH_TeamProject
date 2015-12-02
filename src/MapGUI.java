@@ -42,7 +42,7 @@ public class MapGUI extends LoginGUI {
 	int zoom=15;	
 	public static int lostCount=0;	
 	public String gpsHome=home;	
-	public String gpsUser;	
+	public String gpsUser;
 	String nPath="&path=color:red|weight:5";	
 	String newPath;	
 	public String lostL1;	
@@ -365,7 +365,7 @@ public class MapGUI extends LoginGUI {
 		email = read.readLine();
 		read.close();
 		
-		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contacts\nYou have been lost "+lostCount+" times in the last "+lostCount+" minute(s).\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Please remain at your location.\nAn alert has been sent to your Emergency Contact, "+name+".\nYou have been lost "+lostCount+" time(s) in the last 123 minute(s).\nAn Email has been sent to "+email+".\nA message has been sent to "+number+".", "Emergency: Lost", JOptionPane.WARNING_MESSAGE);
 		
 		//send email
 		final String user = "alhse300@gmail.com";
